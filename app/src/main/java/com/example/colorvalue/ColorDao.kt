@@ -15,10 +15,10 @@ interface ColorDao {
     fun getAll(): Flow<List<Color>>
 
     @Query("SELECT * FROM colors_table WHERE name = :name")
-    suspend fun getColorByName(name: String): LiveData<Color>
+    fun getColorByName(name: String): LiveData<Color>
 
     @Query("SELECT * FROM colors_table WHERE hex_color = :hex")
-    suspend fun getColorByhex(hex: String): LiveData<Color>
+    fun getColorByhex(hex: String): LiveData<Color>
 
     @Insert
     suspend fun insert(vararg color: Color)

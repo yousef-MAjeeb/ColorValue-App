@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.example.colorvalue.databinding.FragmentListBinding
+import androidx.navigation.fragment.findNavController
 
 class ColorListFragment : Fragment() {
 
@@ -34,7 +35,7 @@ class ColorListFragment : Fragment() {
         }
 
         binding.fab.setOnClickListener {
-            // TODO: navigate to AddColorFragment
+            findNavController().navigate(R.id.action_colorListFragment_to_addColorFragment)
         }
     }
 
