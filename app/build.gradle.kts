@@ -58,6 +58,8 @@ dependencies {
     implementation("androidx.room:room-ktx:${room_version}")
     testImplementation("androidx.room:room-testing:${room_version}")
     implementation("androidx.fragment:fragment-ktx:1.8.9")
+    implementation("androidx.navigation:navigation-fragment-ktx:2.9.7")
+    implementation("androidx.navigation:navigation-ui-ktx:2.9.7")
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
