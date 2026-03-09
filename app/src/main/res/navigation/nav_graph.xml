@@ -9,10 +9,16 @@
         android:id="@+id/colorListFragment"
         android:name="com.example.colorvalue.ColorListFragment"
         android:label="ColorValue"
-        tools:layout="@layout/fragment_list" >
+        tools:layout="@layout/fragment_list">
+
         <action
             android:id="@+id/action_colorListFragment_to_addColorFragment"
             app:destination="@id/addColorFragment" />
+
+        <action
+            android:id="@+id/action_colorListFragment_to_colorDetailFragment"
+            app:destination="@id/colorDetailFragment" />
+
     </fragment>
 
     <fragment
@@ -21,6 +27,12 @@
         android:label="Add New Card"
         tools:layout="@layout/fragment_add_color" />
 
+    <fragment
+        android:id="@+id/colorDetailFragment"
+        android:name="com.example.colorvalue.ColorDetailFragment"
+        android:label="ColorValue"
+        tools:layout="@layout/fragment_color_detail">
 
+    </fragment>
 
 </navigation>

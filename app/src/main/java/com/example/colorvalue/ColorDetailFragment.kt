@@ -6,42 +6,34 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import com.example.colorvalue.databinding.FragmentListBinding
-import androidx.navigation.fragment.findNavController
+import com.example.colorvalue.databinding.FragmentColorDetailBinding
 
-class ColorListFragment : Fragment() {
+class ColorDetailFragment : Fragment() {
 
-    private var _binding: FragmentListBinding? = null
+    private var _binding: FragmentColorDetailBinding? = null
     private val binding get() = _binding!!
     private val viewModel: ColorVM by activityViewModels()
-    private lateinit var adapter: ColorAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentListBinding.inflate(inflater, container, false)
+        _binding = FragmentColorDetailBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        adapter = ColorAdapter { color ->
-            val bundle = Bundle().apply {
-                putInt("colorId", color.id)
-            }
-            findNavController().navigate(R.id.action_colorListFragment_to_colorDetailFragment, bundle)
-        }
-
-        binding.recyclerView.adapter = adapter
+        val colorId = arguments?.getInt("colorId") ?: return
 
         viewModel.allColors.observe(viewLifecycleOwner) { colors ->
-            adapter.submitList(colors)
-        }
-
-        binding.fab.setOnClickListener {
-            findNavController().navigate(R.id.action_colorListFragment_to_addColorFragment)
+            val color = colors.find { it.id == colorId }
+            color?.let {
+                binding.colorView.setBackgroundColor(android.graphics.Color.rgb(it.red, it.green, it.blue))
+                binding.tvName.text = it.name
+                binding.tvHex.text = it.hex
+            }
         }
     }
 
