@@ -8,5 +8,8 @@ import androidx.room.PrimaryKey
 data class Color(
     @PrimaryKey(autoGenerate = true) val id: Int = 0,
     @ColumnInfo(name = "hex_color") val hex: String,
-    val name: String
+    val name: String,
+    val red: Int,
+    val green: Int,
+    val blue: Int
 )
