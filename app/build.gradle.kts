@@ -57,6 +57,7 @@ dependencies {
     ksp("androidx.room:room-compiler:$room_version")
     implementation("androidx.room:room-ktx:${room_version}")
     testImplementation("androidx.room:room-testing:${room_version}")
+    implementation("androidx.fragment:fragment-ktx:1.8.9")
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
