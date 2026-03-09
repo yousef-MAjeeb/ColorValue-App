@@ -6,12 +6,13 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface ColorDao {
 
     @Query("SELECT * FROM colors_table")
-    fun getAll(): Array<Color>
+    fun getAll(): Flow<List<Color>>
 
     @Query("SELECT * FROM colors_table WHERE name = :name")
     suspend fun getColorByName(name: String): LiveData<Color>

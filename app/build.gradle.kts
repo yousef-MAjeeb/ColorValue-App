@@ -42,6 +42,7 @@ android {
 }
 
 dependencies {
+    implementation(libs.androidx.cardview)
     val room_version = "2.8.4"
 
     implementation(libs.androidx.core.ktx)
