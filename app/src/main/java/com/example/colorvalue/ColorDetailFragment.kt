@@ -2,10 +2,15 @@ package com.example.colorvalue
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import com.example.colorvalue.databinding.FragmentColorDetailBinding
 
 class ColorDetailFragment : Fragment() {
@@ -35,6 +40,27 @@ class ColorDetailFragment : Fragment() {
                 binding.tvHex.text = it.hex
             }
         }
+
+        // add delete-icon
+        requireActivity().addMenuProvider(object : MenuProvider {
+            override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+                menuInflater.inflate(R.menu.menu_detail, menu)
+            }
+
+            override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+                return when (menuItem.itemId) {
+                    R.id.action_delete -> {
+                        val colorId = arguments?.getInt("colorId") ?: return false
+                        viewModel.allColors.value?.find { it.id == colorId }?.let {
+                            viewModel.deleteColor(it)
+                            findNavController().popBackStack()
+                        }
+                        true
+                    }
+                    else -> false
+                }
+            }
+        }, viewLifecycleOwner)
     }
 
     override fun onDestroyView() {
